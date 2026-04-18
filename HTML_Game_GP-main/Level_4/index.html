@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Level 4</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <header>
+      <span class="logo"
+        ><img class="HDlogo" src="../level_logo.png" alt=""
+      /></span>
+      <div class="navBar">
+        <div><span class="span">Level 4: your first form</span></div>
+        <div class="line">collect a name and email.</div>
+      </div>
+    </header>
+    <main class="main">
+      <img src="player.png" alt="Player" class="player" />
+      <img src="level_4.png" alt="Level_1" class="bord" />
+      <img src="noto_treasure-chest.png" class="chest"/>
+      <img src="Diamond.png" class="diamond1"/>
+      <img src="Diamond.png" class="diamond2"/>
+      <img src="Diamond.png" class="diamond3"/>
+      <img src="Diamond.png" class="diamond4"/>
+    </main>
+    <aside class="sidebar">
+      <p>
+        Write Your Code Here
+        <a href="../Chatbot-Content/chatbot-content.html"><img class="chatbot" src="chat bot.png" alt="" /></a>
+      </p>
+      <!-- <div class="code">
+        <pre>
+          <code>
+            &#x3C;! doctype html&#x3E;
+              &#x3C;html&#x3E;
+                &#x3C;head&#x3E;
+                      &#x3C;title&#x3E;
+                        &#x3C; ! -- write your page title here --&#x3E;
+                      &#x3C;/title&#x3E;
+                &#x3C;/head&#x3E;
+                &#x3C;body&#x3E; 
+                      &#x3C; ! -- write your &#x3C;h1&#x3E; here --&#x3E;
+                      &#x3C; ! -- write your &#x3C;p&#x3E; here --&#x3E;
+                &#x3C;/body&#x3E;
+              &#x3C;/html&#x3E;
+          </code>
+
+        </pre>
+      </div> -->
+      <textarea id="codeInput" class="textarea"></textarea>
+      <button id="runButton" class="button" type="button">Run</button>
+      <div id="statusMessage" class="status"></div>
+    </aside>
+    <footer class="footer">
+      <section class="list">
+        <p class="Fsection">HTML Tag You Can Use :</p>
+        <ul class="columns">
+          <li> < title ></li>
+          <li>< h1 ></li>
+          <li>< p ></li>
+        </ul>
+      </section>
+
+      <section class="list2">
+        <h2 class="Ssection">Your Mission :</h2>
+        <ul>
+          <li>Write a Page Title</dd>
+          <li>Add a Pig Heading</dd>
+          <li>Add a Short Paragraph</dd>
+        </ul>
+      </section>
+    </footer>
+
+    <div id="resultOverlay" class="result-overlay hidden">
+      <div class="result-card">
+        <h2>Great Job! 🎉</h2>
+        <p class="result-text">You did it!</p>
+        <p class="result-text">you created your first form!</p>
+        <div class="result-buttons">
+          <button id="nextLevelButton" class="overlay-button">
+            Next Level ▶⎢
+          </button>
+          <button id="tryAgainButton" class="overlay-button secondary">
+            Try Again ⟳
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

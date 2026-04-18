@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body class="body">
+    <div class="home-page-python">
+      <header>
+        <h1>castle levels</h1>
+
+        <p>Choose a level to start your adventure</p>
+      </header>
+      <main>
+        <a href="Level_1/Index.html" class="first button">  <span>sequence</span></a>
+        <a href="Level_2/Index.html" class="second button"> <span>variables</span></a>
+        <a href="Level_3/Index.html" class="third button">  <span>loops</span></a>
+        <a href="Level_4/Index.html" class="forth button">  <span>conditions</span></a>
+        <a href="Level_5/Index.html" class="fifth button">  <span>functions</span></a>
+        <a href="Level_6/Index.html" class="sixth button">  <span>lists</span></a>
+        <a href="Level_7/Index.html" class="seventh button"><span>smart path</span></a>
+        <a href="Level_8/Index.html" class="eighth button"> <span>obstacles</span></a>
+        <a href="Level_9/Index.html" class="ninth button">  <span>goals & rewards</span></a>
+        <a href="Level_10/Index.html" class="tenth button"> <span>Final Challenge</span></a>
+      </main>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const level2Button = document.querySelector(".second.button");
+        if (
+          level2Button &&
+          localStorage.getItem("Level_2_completed") === "true"
+        ) {
+          level2Button.classList.add("completed");
+        }
+      });
+    </script>
+  </body>
+</html>
