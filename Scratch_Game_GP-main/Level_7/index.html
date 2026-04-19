@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Level 7</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <header>
+      <span class="logo"
+        ><img class="HDlogo" src="../level_logo.png" alt=""
+      /></span>
+      <div class="navBar">
+        <div><span class="span">Level 7 : if / else statement!</span></div>
+        <div class="line">use if to let the computer decide!</div>
+      </div>
+    </header>
+    <div class="content">
+    <main class="main">
+      <img src="player.png" alt="Player" class="player" />
+      <img src="level_1.png" alt="Level_1" class="bord" />
+      <img src="noto_treasure-chest.png" class="chest"/>
+    </main>
+    <aside class="sidebar">
+      <p class="text-sidebar">
+        Use the cards in the correct order to reach the finish.
+        Any mistake will make you go back one step.
+      </p>
+
+      <div class="choses">
+        <button>GO RIGHT <img src="fxemoji_right.png" alt=""></button>
+        <button>GO LEFT <img src="fxemoji_right (1).png" alt=""></button>
+        <button>GO DOWN <img src="fxemoji_right (2).png" alt=""></button>
+        <button>GO UP <img src="fxemoji_right (3).png" alt=""></button>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <section class="list">
+        <div class="head">
+          <a href="../Chatbot-Content/chatbot-content.html"><img src="chat bot.png" alt=""></a>
+          <p>Drag the commands here in order to guide the character and reach the treasure!</p>
+        </div>
+        <div class="solution">
+          <textarea id="codeInput" class="textarea"></textarea>
+        </div>
+      </section>
+
+    </footer>
+
+    <div id="resultOverlay" class="result-overlay hidden">
+      <div class="result-card">
+        <h2>Great Job! 🎉</h2>
+        <p class="result-text">You did it!</p>
+        <p class="result-text">now you know how if/else helps the computer decide!</p>
+        <div class="result-buttons">
+          <button id="nextLevelButton" class="overlay-button">
+            Next Level ▶⎢
+          </button>
+          <button id="tryAgainButton" class="overlay-button secondary">
+            Try Again ⟳
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
