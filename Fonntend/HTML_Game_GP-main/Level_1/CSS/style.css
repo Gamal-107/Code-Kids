@@ -82,7 +82,7 @@ header {
   grid-area: mn;
   position: relative;
   margin-top: 40px;
-  width: 850px;
+  width: 870px;
   height: 500px;
   background-color: var(--GAME-BG);
   border: #e65100 solid 10px;
@@ -156,7 +156,7 @@ header {
   position: absolute;
   width: 425px;
   height: 665px;
-  left: 885px;
+  left: 955px;
   padding: 10px;
 }
 .sidebar > p {
