@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Register</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        overflow: hidden;
+      }
+
+      .form-wrapper {
+        display: none;
+        padding: 40px;
+        animation: slideIn 0.3s ease-in-out;
+      }
+
+      .form-wrapper.active {
+        display: block;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .form-header h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 28px;
+      }
+
+      .form-header p {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-submit:active {
+        transform: translateY(0);
+      }
+
+      .btn-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .toggle-form {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .toggle-form p {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .toggle-form button {
+        background: none;
+        border: none;
+        color: #667eea;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .toggle-form button:hover {
+        text-decoration: underline;
+      }
+
+      .error {
+        background-color: #fee;
+        color: #c33;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        border-left: 4px solid #c33;
+      }
+
+      .success {
+        background-color: #efe;
+        color: #3c3;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        border-left: 4px solid #3c3;
+      }
+
+      .loader {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- LOGIN FORM -->
+      <div class="form-wrapper active" id="loginForm">
+        <div class="form-header">
+          <h1>Welcome Back</h1>
+          <p>Sign in to your account</p>
+        </div>
+
+        <div id="loginError" class="error" style="display: none"></div>
+
+        <form id="formLogin" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="Enter your email"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Enter your password"
+              required />
+          </div>
+
+          <button type="submit" class="btn-submit" id="btnLogin">
+            <span id="loginText">Sign In</span>
+          </button>
+        </form>
+
+        <div class="toggle-form">
+          <p>Don't have an account?</p>
+          <button type="button" onclick="toggleForm('register')">
+            Create Account
+          </button>
+        </div>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div class="form-wrapper" id="registerForm">
+        <div class="form-header">
+          <h1>Create Account</h1>
+          <p>Join our learning adventure</p>
+        </div>
+
+        <div id="registerError" class="error" style="display: none"></div>
+        <div id="registerSuccess" class="success" style="display: none"></div>
+
+        <form id="formRegister" onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label for="registerUsername">Username</label>
+            <input
+              type="text"
+              id="registerUsername"
+              placeholder="Choose a username"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label for="registerEmail">Email</label>
+            <input
+              type="email"
+              id="registerEmail"
+              placeholder="Enter your email"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <input
+              type="password"
+              id="registerPassword"
+              placeholder="Create a password (min. 6 chars)"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm your password"
+              required />
+          </div>
+
+          <button type="submit" class="btn-submit" id="btnRegister">
+            <span id="registerText">Create Account</span>
+          </button>
+        </form>
+
+        <div class="toggle-form">
+          <p>Already have an account?</p>
+          <button type="button" onclick="toggleForm('login')">Sign In</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+      function toggleForm(form) {
+        document.getElementById("loginForm").classList.remove("active");
+        document.getElementById("registerForm").classList.remove("active");
+
+        if (form === "login") {
+          document.getElementById("loginForm").classList.add("active");
+        } else {
+          document.getElementById("registerForm").classList.add("active");
+        }
+      }
+
+      async function handleLogin(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+        const errorDiv = document.getElementById("loginError");
+        const btnLogin = document.getElementById("btnLogin");
+        const loginText = document.getElementById("loginText");
+
+        // Clear previous errors
+        errorDiv.style.display = "none";
+
+        // Disable button and show loader
+        btnLogin.disabled = true;
+        loginText.innerHTML = '<div class="loader"></div>';
+
+        try {
+          const result = await api.login(email, password);
+
+          if (result.success) {
+            // Show success message
+            errorDiv.classList.remove("error");
+            errorDiv.classList.add("success");
+            errorDiv.textContent = "✅ Login successful! Redirecting...";
+            errorDiv.style.display = "block";
+
+            // Redirect after 1.5 seconds
+            setTimeout(() => {
+              window.location.href = "Dashboard/Dashboard.html";
+            }, 1500);
+          } else {
+            // Show error
+            errorDiv.textContent =
+              "❌ " + (result.data?.message || result.error || "Login failed");
+            errorDiv.style.display = "block";
+            btnLogin.disabled = false;
+            loginText.innerHTML = "Sign In";
+          }
+        } catch (error) {
+          errorDiv.textContent = "❌ An error occurred: " + error.message;
+          errorDiv.style.display = "block";
+          btnLogin.disabled = false;
+          loginText.innerHTML = "Sign In";
+        }
+      }
+
+      async function handleRegister(event) {
+        event.preventDefault();
+
+        const username = document
+          .getElementById("registerUsername")
+          .value.trim();
+        const email = document.getElementById("registerEmail").value.trim();
+        const password = document
+          .getElementById("registerPassword")
+          .value.trim();
+        const confirmPassword = document
+          .getElementById("confirmPassword")
+          .value.trim();
+
+        const errorDiv = document.getElementById("registerError");
+        const successDiv = document.getElementById("registerSuccess");
+        const btnRegister = document.getElementById("btnRegister");
+        const registerText = document.getElementById("registerText");
+
+        // Clear previous messages
+        errorDiv.style.display = "none";
+        successDiv.style.display = "none";
+
+        // Validate
+        if (password !== confirmPassword) {
+          errorDiv.textContent = "❌ Passwords do not match";
+          errorDiv.style.display = "block";
+          return;
+        }
+
+        if (password.length < 6) {
+          errorDiv.textContent = "❌ Password must be at least 6 characters";
+          errorDiv.style.display = "block";
+          return;
+        }
+
+        // Disable button and show loader
+        btnRegister.disabled = true;
+        registerText.innerHTML = '<div class="loader"></div>';
+
+        try {
+          const result = await api.register(username, email, password);
+
+          if (result.success) {
+            // Show success message
+            successDiv.textContent = "✅ Account created! Login now...";
+            successDiv.style.display = "block";
+
+            // Clear form
+            document.getElementById("formRegister").reset();
+
+            // Switch to login after 2 seconds
+            setTimeout(() => {
+              document.getElementById("formRegister").reset();
+              toggleForm("login");
+            }, 2000);
+          } else {
+            // Show error
+            errorDiv.textContent =
+              "❌ " +
+              (result.data?.message || result.error || "Registration failed");
+            errorDiv.style.display = "block";
+            btnRegister.disabled = false;
+            registerText.innerHTML = "Create Account";
+          }
+        } catch (error) {
+          errorDiv.textContent = "❌ An error occurred: " + error.message;
+          errorDiv.style.display = "block";
+          btnRegister.disabled = false;
+          registerText.innerHTML = "Create Account";
+        }
+      }
+
+      // Check if already logged in
+      window.addEventListener("load", () => {
+        if (api.isAuthenticated()) {
+          window.location.href = "Dashboard/Dashboard.html";
+        }
+      });
+    </script>
+  </body>
+</html>

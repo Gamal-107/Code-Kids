@@ -1,0 +1,59 @@
+{
+  "level_1": {
+    "start_pos": [0, 0],
+    "target_pos": [5, 4],
+    "optimal_path": ["RIGHT", "RIGHT", "DOWN", "RIGHT"],
+    "required_blocks": ["GO_RIGHT", "GO_DOWN"]
+  },
+  "1": {
+    "start": [0, 0],
+    "target": [4, 5],
+    "gridSize": [10, 10]
+  },
+  "3": {
+    "start": [0, 0],
+    "target": [5, 8],
+    "direction": "RIGHT"
+  },
+  "6": {
+    "start": [0, 2],
+    "target": [5, 2],
+    "gridMap": [
+      [0, 0, 0, 0, 0],
+      [1, 1, 1, 0, 0],
+      [0, 0, 1, 1, 1]
+    ]
+  },
+  "8": {
+    "start": [0, 2],
+    "target": [5, 2],
+    "requiredGems": 3,
+    "diamonds": [
+      [1, 2],
+      [3, 2],
+      [4, 2]
+    ],
+    "gridMap": []
+  },
+  "logic_example": {
+    "type": "if_statement",
+    "condition": "path_clear",
+    "then": {
+      "type": "move",
+      "action": "GO_FORWARD"
+    },
+    "else": {
+      "type": "move",
+      "action": "TURN_RIGHT"
+    }
+  },
+  "event_commands": [
+    {
+      "type": "event_listener",
+      "event_name": "on_reach_diamond",
+      "actions": [
+        { "type": "move", "action": "collect_item" }
+      ]
+    }
+  ]
+}
