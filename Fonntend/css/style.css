@@ -18,6 +18,15 @@ img {
   height: 100%;
 }
 
+/* Hide all sections by default */
+section {
+  display: none !important;
+}
+
+section.active {
+  display: block !important;
+}
+
 .main .home {
   background-image: url("../images/Home.png");
   background-size: cover;
@@ -79,7 +88,7 @@ header .sign {
   height: 70px;
   font-size: 20px;
   font-weight: 700;
-  color: #27541E;
+  color: #27541e;
 }
 .home > div.header-text > .start {
   width: 290px;
@@ -188,13 +197,13 @@ section.active {
   text-align: center;
 }
 .start-journey .content > h2 {
-    font-size: 28px;
-    color: white;
-    font-weight: bold;
-    text-transform: capitalize;
-    font-family: "Luckiest Guy";
-    letter-spacing: 3px;
-    color: #439732;
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-family: "Luckiest Guy";
+  letter-spacing: 3px;
+  color: #439732;
 }
 .start-journey .content > p {
   font-size: 20px;
@@ -309,12 +318,12 @@ section.active {
   border: 5px solid #43370c;
   box-sizing: content-box;
 }
-.python-category{
-  border: 5px solid #E6C25E;
+.python-category {
+  border: 5px solid #e6c25e;
   box-sizing: content-box;
 }
-.html-category{
-  border: 5px solid #E65100;
+.html-category {
+  border: 5px solid #e65100;
   box-sizing: content-box;
 }
 /* End Jorurney */
